@@ -117,8 +117,8 @@ namespace TestEducationUow.Service.Services
         public async Task<string> SaveFileAsync(Stream file, string fileName)
         {
             fileName = Guid.NewGuid().ToString("N") + "_" + fileName;
-            string storagePath = config.GetSection("Storage:ImageUrl").Value;
-            string filePath = Path.Combine(env.WebRootPath, $"{storagePath}/{fileName}");
+            var storagePath = config.GetSection("Storage:ImageUrl").Value;
+            var filePath = Path.Combine(env.WebRootPath, $"{storagePath}/{fileName}");
 
             FileStream mainFile = File.Create(filePath);
             await file.CopyToAsync(mainFile);
